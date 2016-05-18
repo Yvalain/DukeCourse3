@@ -1,5 +1,6 @@
 package com.edu.yae.course2;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.*;
@@ -9,6 +10,15 @@ import java.io.*;
  * Created by yvalain on 16/05/2016.
  */
 public class CaesarCipherTest {
+    private String filePath;
+    private int key;
+
+    @Before
+    public void executedBeforeEach() {
+        filePath = "/Users/yvalain/MyProjects/Java/JavaProgrammingCourse2/test/message3.txt";
+        key = 17;
+    }
+
 
     public String getFileText(String filePath) {
         String line;
@@ -33,10 +43,8 @@ public class CaesarCipherTest {
 
     @Test
     public void testCaesar() {
-        String filePath = "/Users/yvalain/MyProjects/Java/JavaProgrammingCourse2/test/message1.txt";
         CaesarCipher caesarCipher = new CaesarCipher();
         String message = getFileText(filePath);
-        int key = 17;
         String encrypted = caesarCipher.encrypt(message, key);
         System.out.println("Encrypted: " + encrypted);
         String decrypted = caesarCipher.encrypt(encrypted, 26 - key);
