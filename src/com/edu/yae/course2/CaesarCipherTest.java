@@ -16,7 +16,7 @@ public class CaesarCipherTest {
     @Before
     public void executedBeforeEach() {
         filePath = "/Users/yvalain/MyProjects/Java/JavaProgrammingCourse2/test/message3.txt";
-        key = 17;
+        key = 23;
     }
 
 
