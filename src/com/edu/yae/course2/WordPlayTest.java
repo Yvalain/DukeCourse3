@@ -26,12 +26,22 @@ public class WordPlayTest {
         Assert.assertFalse("Letter is not a vowel", newWordPlay.isVowel(character));
     }
 
+    @Ignore
     @Test
     public void replaceVowels() {
         String str = "Hello World";
         char chr = '*';
 
         Assert.assertTrue("Vowels are well replaced ", "H*ll* W*rld".equals(newWordPlay.replaceVowels(str, chr)));
+    }
 
+    @Test
+    public void emphasize() {
+        String str = "dna ctgaaactga";
+        char chr = 'a';
+
+        System.out.println(newWordPlay.emphasize(str, chr));
+
+        Assert.assertTrue("Vowels are well replaced ", "dn* ctg+*+ctg+".equals(newWordPlay.emphasize(str, chr)));
     }
 }
