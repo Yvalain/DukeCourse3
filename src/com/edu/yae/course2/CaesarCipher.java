@@ -6,48 +6,42 @@ package com.edu.yae.course2;
  */
 public class CaesarCipher {
 
+    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    boolean isLowercase = false;
+
     public String encrypt(String input, int key) {
         StringBuilder encrypted = new StringBuilder(input);
-        String alphabet = getShiftedAlphabet(key);
-        boolean isLowercase = false;
+        String shiftedAlphabet = getShiftedAlphabet(key);
 
         for (int i = 0; i < encrypted.length(); i++) {
             char currChar = encrypted.charAt(i);
+
             if (Character.isLowerCase(currChar)) {
                 currChar = Character.toUpperCase(currChar);
                 isLowercase = true;
             }
-            // regarder si elle est dans le shifted
-            int idx = alphabet.indexOf(currChar);
-            // si elle y est la positionner
+
+            int idx = shiftedAlphabet.indexOf(currChar);
+
             if (idx != -1) {
-                char newChar = alphabet.charAt(i);
-                if (isLowercase) {
-                    newChar = Character.toLowerCase(newChar);
-                }
+                char newChar = alphabet.charAt(idx);
+                newChar = getCharInGoodCase(newChar);
                 encrypted.setCharAt(i, newChar);
             }
         }
         return encrypted.toString();
     }
 
-
-//    public String encryptTwoKeys(String input, int key1, int key2) {
-//        StringBuilder encrypted = new StringBuilder(input);
-//
-//        for (int i = 0; i < encrypted.length(); i+=2) {
-//            char currChar = encrypted.charAt(i);
-//            char nextChar = encrypted.charAt(i++);
-//
-//            String shiftedAlphabet = getShiftedAlphabet(key1);
-//
-//        }
-//        return encrypted.toString();
-//    }
+    private char getCharInGoodCase(char newChar) {
+        if (isLowercase) {
+            newChar = Character.toLowerCase(newChar);
+        }
+        isLowercase = false;
+        return newChar;
+    }
 
     private String getShiftedAlphabet(int key) {
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        return alphabet.substring(key) + alphabet.substring(0, key);
+        return alphabet.substring(alphabet.length() - key) + alphabet.substring(0, alphabet.length() - key);
     }
 
 }

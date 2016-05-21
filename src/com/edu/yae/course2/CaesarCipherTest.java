@@ -1,5 +1,6 @@
 package com.edu.yae.course2;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +19,6 @@ public class CaesarCipherTest {
         filePath = "/Users/yvalain/MyProjects/Java/JavaProgrammingCourse2/test/message3.txt";
         key = 23;
     }
-
 
     public String getFileText(String filePath) {
         String line;
@@ -46,9 +46,8 @@ public class CaesarCipherTest {
         CaesarCipher caesarCipher = new CaesarCipher();
         String message = getFileText(filePath);
         String encrypted = caesarCipher.encrypt(message, key);
-        System.out.println("Encrypted: " + encrypted);
         String decrypted = caesarCipher.encrypt(encrypted, 26 - key);
-        System.out.println("Decrypted: " + decrypted);
+        Assert.assertTrue("The texts are differents ", decrypted.equals(message));
 
     }
 }
