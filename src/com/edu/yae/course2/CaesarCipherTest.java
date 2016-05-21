@@ -13,11 +13,13 @@ import java.io.*;
 public class CaesarCipherTest {
     private String filePath;
     private int key;
+    private int key2;
 
     @Before
     public void executedBeforeEach() {
         filePath = "/Users/yvalain/MyProjects/Java/JavaProgrammingCourse2/test/message3.txt";
         key = 23;
+        key2 = 17;
     }
 
     public String getFileText(String filePath) {
@@ -47,6 +49,18 @@ public class CaesarCipherTest {
         String message = getFileText(filePath);
         String encrypted = caesarCipher.encrypt(message, key);
         String decrypted = caesarCipher.encrypt(encrypted, 26 - key);
+        Assert.assertTrue("The texts are differents ", decrypted.equals(message));
+
+    }
+
+    @Test
+    public void testCaesar2Keys() {
+        CaesarCipher caesarCipher = new CaesarCipher();
+        String message = getFileText(filePath);
+        System.out.println(message);
+        String encrypted = caesarCipher.encryptTwoKeys(message, key, key2);
+        System.out.println(encrypted);
+        String decrypted = caesarCipher.encryptTwoKeys(encrypted, 26 - key, 26 - key2 );
         Assert.assertTrue("The texts are differents ", decrypted.equals(message));
 
     }

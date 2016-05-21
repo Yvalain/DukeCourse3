@@ -6,12 +6,14 @@ package com.edu.yae.course2;
  */
 public class CaesarCipher {
 
-    String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    boolean isLowercase = false;
+    private String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private boolean isLowercase = false;
+    private StringBuilder encrypted;
+    private String shiftedAlphabet;
 
     public String encrypt(String input, int key) {
-        StringBuilder encrypted = new StringBuilder(input);
-        String shiftedAlphabet = getShiftedAlphabet(key);
+        encrypted = new StringBuilder(input);
+        shiftedAlphabet = getShiftedAlphabet(key);
 
         for (int i = 0; i < encrypted.length(); i++) {
             char currChar = encrypted.charAt(i);
@@ -30,6 +32,38 @@ public class CaesarCipher {
             }
         }
         return encrypted.toString();
+    }
+
+    public String encryptTwoKeys(String input, int firstKey, int secondKey) {
+        encrypted = new StringBuilder(input);
+
+        for (int i = 0; i < encrypted.length(); i++) {
+            char currChar = encrypted.charAt(i);
+
+            shiftedAlphabet = getAlphabet(firstKey, secondKey, i);
+
+            if (Character.isLowerCase(currChar)) {
+                currChar = Character.toUpperCase(currChar);
+                isLowercase = true;
+            }
+
+            int idx = shiftedAlphabet.indexOf(currChar);
+
+            if (idx != -1) {
+                char newChar = alphabet.charAt(idx);
+                newChar = getCharInGoodCase(newChar);
+                encrypted.setCharAt(i, newChar);
+            }
+        }
+        return encrypted.toString();
+    }
+
+    private String getAlphabet(int firstKey, int secondKey, int i) {
+        if (i % 2 == 0) {
+            return getShiftedAlphabet(firstKey);
+        } else {
+            return getShiftedAlphabet(secondKey);
+        }
     }
 
     private char getCharInGoodCase(char newChar) {
