@@ -26,7 +26,7 @@ class WordPlay {
         char toUse;
         for (int i = 0; i < strBuilder.length(); i++) {
             char charac = strBuilder.charAt(i);
-            if (charac == chr) {
+            if (charac == Character.toLowerCase(chr) || charac == Character.toUpperCase(chr) ) {
                 toUse = getTheReplacementCharacter(i);
                 strBuilder.setCharAt(i, toUse);
             }

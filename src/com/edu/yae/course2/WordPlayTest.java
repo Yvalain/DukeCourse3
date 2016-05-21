@@ -33,11 +33,10 @@ public class WordPlayTest {
 
     @Test
     public void emphasize() {
-        String str = "dna ctgaaactga";
+        String str = "Mary Bella Abracadabra";
         char chr = 'a';
-
         System.out.println(newWordPlay.emphasize(str, chr));
 
-        Assert.assertTrue("Vowels are well replaced ", "dn* ctg+*+ctg+".equals(newWordPlay.emphasize(str, chr)));
+        Assert.assertTrue("Vowels are well replaced ", "M+ry Bell+ +br*c*d*br+".equals(newWordPlay.emphasize(str, chr)));
     }
 }
