@@ -1,7 +1,6 @@
 package com.edu.yae.course2;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -12,21 +11,18 @@ public class WordPlayTest {
     private final WordPlay newWordPlay = new WordPlay();
     private char character;
 
-    @Ignore
     @Test
     public void isVowel() {
         character = 'a';
         Assert.assertTrue("Letter is vowel", newWordPlay.isVowel(character));
     }
 
-    @Ignore
     @Test
     public void isNotVowel() {
         character = 'x';
         Assert.assertFalse("Letter is not a vowel", newWordPlay.isVowel(character));
     }
 
-    @Ignore
     @Test
     public void replaceVowels() {
         String str = "Hello World";
