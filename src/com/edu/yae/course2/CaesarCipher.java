@@ -4,9 +4,9 @@ package com.edu.yae.course2;
  * JavaProgrammingCourse2
  * Created by yvalain on 16/05/2016.
  */
-public class CaesarCipher {
+class CaesarCipher {
 
-    private String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private boolean isLowercase = false;
     private StringBuilder encrypted;
     private String shiftedAlphabet;

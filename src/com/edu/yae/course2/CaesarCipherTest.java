@@ -22,7 +22,7 @@ public class CaesarCipherTest {
         key2 = 17;
     }
 
-    public String getFileText(String filePath) {
+    private String getFileText(String filePath) {
         String line;
         String text = "";
 
