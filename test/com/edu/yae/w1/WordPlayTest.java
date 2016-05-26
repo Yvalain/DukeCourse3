@@ -1,4 +1,4 @@
-package com.edu.yae.course2;
+package com.edu.yae.w1;
 
 import org.junit.Assert;
 import org.junit.Test;
