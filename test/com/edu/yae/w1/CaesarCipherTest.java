@@ -10,15 +10,13 @@ import org.junit.Test;
  * Created by yvalain on 16/05/2016.
  */
 public class CaesarCipherTest {
-    private String filePath;
     private int key;
     private int key2;
     FileResource fileRes;
 
     @Before
     public void executedBeforeEach() {
-        filePath = "./test/message3.txt";
-        fileRes = new FileResource(filePath);
+        fileRes = new FileResource("./test/message3.txt");
         key = 23;
         key2 = 17;
     }
