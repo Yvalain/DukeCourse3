@@ -11,24 +11,40 @@ import org.junit.Test;
  */
 public class WordLengthsTest {
 
-    private FileResource fileRes;
     private WordLengths wordLengths;
 
     @Before
     public void setUp() throws Exception {
-        fileRes = new FileResource("./test/small.txt");
         wordLengths = new WordLengths();
     }
 
     @Test
     public void testCountWordLengths() throws Exception {
-        wordLengths.countWordLengths(fileRes);
-        int [] counts = wordLengths.getWordsFrequency();
-        for (int count : counts) {
-            System.out.println(count);
+        FileResource fileRes = new FileResource("./test/small.txt");
+        int [] count = new int [13];
+
+        wordLengths.countWordLengths(fileRes, count);
+        int [] frequencies = wordLengths.getWordsFrequency();
+        for (int freq : frequencies) {
+            System.out.println(freq);
         }
 
-        Assert.assertNotNull("The resource is not empty", counts);
-        Assert.assertTrue("There should be 6 words of 3 letters", 6 == counts[3]);
+        Assert.assertNotNull("The resource is not empty", frequencies);
+        Assert.assertTrue("There should be 6 words of 3 letters", 6 == frequencies[3]);
+    }
+
+    @Test
+    public void testCountWordLengthsSmallHamlet() throws Exception {
+        FileResource fileRes = new FileResource("./test/smallHamlet.txt");
+        int [] count = new int [31];
+
+        wordLengths.countWordLengths(fileRes, count);
+        int [] frequencies = wordLengths.getWordsFrequency();
+        for (int freq : frequencies) {
+            System.out.println(freq);
+        }
+
+        Assert.assertNotNull("The resource is not empty", frequencies);
+        Assert.assertTrue("index of Max should be 3", 3 == wordLengths.indexOfMax(frequencies));
     }
 }
